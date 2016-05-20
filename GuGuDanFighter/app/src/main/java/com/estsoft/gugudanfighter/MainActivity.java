@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity( new Intent( MainActivity.this, RecordActivity.class ) );
-                finish();
             }
         });
 
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity( new Intent( MainActivity.this, HelpActivity.class ) );
-                finish();
             }
         });
 

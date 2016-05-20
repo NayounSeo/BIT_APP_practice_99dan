@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
+        System.out.println("누른 버튼은 : "+viewId);
         if (viewId == buttons[hereIsTheResult].getId()) {
             gameCorrect++;
         } else {
@@ -68,12 +69,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for(int i=0; i<numOfButtons; i++) {
             int random1 = randomize(1, 9);
             int random2 = randomize(1, 9);
-            int temprandom = random1*random2;
-            Boolean isAlready = whatArrayContains(randomAnswers, temprandom, result);
+            int tempRandom = random1*random2;
+            System.out.println("tempRandom : "+ tempRandom+", result : "+result);
+            Boolean isAlready = whatArrayContains(randomAnswers, tempRandom, result);
             if(isAlready) {
+                System.out.println("isAlready에 들어온 아이는 : "+(i+1)+"번째");
+                //TODO
+                /* 다 짰는데 그리고 중복검사도 하는데
+                * 왜 중복되는 숫자가 생겨있나 했더니ㅜㅠㅜㅠㅜ
+                * 여기 들어와도 i가 줄어들지 않아서,
+                * 초기화 되지 못하는 버튼이 생기는 거였다!*/
+                i -= 1;
+                /*whatArrayContains 함수는 다시 처음처럼 고쳐주고,
+                * 정답에 대한 중복검사는 끝에 한번만 하게 고치는 것으로!
+                * TH 예닮
+                * */
                 continue;
             }
-            randomAnswers[i] = temprandom;
+            randomAnswers[i] = tempRandom;
             buttons[i].setText(""+randomAnswers[i]);
         }
         hereIsTheResult = randomize(0, 8);
@@ -109,10 +122,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         private int seconds=0;
         @Override
         public void run() {
-            /*
-            * Game Activity는 여기서 끝납니다!
-            */
-            if(++seconds > 5) {
+            if(++seconds > 30) {
                 timer.cancel();
                 Intent timerIntent = new Intent( GameActivity.this, DoneActivity.class);
                 timerIntent.putExtra("total", gameTotal);
@@ -121,8 +131,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(timerIntent);
                 /*finish는 activity를 사라지게!*/
                 finish();
-                /* return 있으면 에러나나..? 에러는 Done 때문이었을까 이것 때문이었을까
-                *  Done 때문이었던 듯ㅋㅋㅋㅋ return은 없어도 되는 것 같다.*/
             }
             runOnUiThread(new Runnable() {
                 @Override
