@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GuGuDanFighter</string>
+    <string name="message_help">구구단을 쉽게 배우기 위해\n만들어진 게임입니다.</string>
+    <string name="maker_email">puremint09@gmail.com</string>
+</resources>

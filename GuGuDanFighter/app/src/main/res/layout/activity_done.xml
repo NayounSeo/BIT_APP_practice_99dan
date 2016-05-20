@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.estsoft.gugudanfighter.DoneActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="게임 결과!"
+        android:id="@+id/textView12"
+        android:layout_marginTop="50dp"
+        android:textSize="40dp"
+        android:textColor="#6D6D6D"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="맞혔다 :"
+        android:id="@+id/textView13"
+        android:layout_marginTop="32dp"
+        android:textSize="20dp"
+        android:textColor="#A09090"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignRight="@+id/button_replay"
+        android:layout_alignEnd="@+id/button_replay" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="틀렸다 :"
+        android:id="@+id/textView14"
+        android:textSize="20dp"
+        android:layout_marginTop="29dp"
+        android:textColor="#A09090"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="총"
+        android:id="@+id/textView15"
+        android:textIsSelectable="true"
+        android:textSize="20dp"
+        android:textColor="#A09090"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView14"
+        android:layout_toLeftOf="@+id/record_total"
+        android:layout_toStartOf="@+id/record_total" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="다시 할 거예요?"
+        android:id="@+id/textView16"
+        android:layout_marginTop="29dp"
+        android:textColor="#6D6D6D"
+        android:textStyle="bold"
+        android:layout_below="@+id/textView15"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="네"
+        android:id="@+id/button_replay"
+        android:width="70dp"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView16"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아니요"
+        android:id="@+id/button_done"
+        android:layout_alignTop="@+id/button_replay"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_alignEnd="@+id/textView12"
+        android:width="70dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="맞힌값"
+        android:id="@+id/record_correct"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_alignEnd="@+id/textView12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="틀린 값"
+        android:id="@+id/record_wrong"
+        android:textSize="20dp"
+        android:layout_above="@+id/textView15"
+        android:layout_alignLeft="@+id/record_correct"
+        android:layout_alignStart="@+id/record_correct" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="총 횟수"
+        android:id="@+id/record_total"
+        android:textSize="20dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_toRightOf="@+id/button_replay"
+        android:layout_toEndOf="@+id/button_replay" />
+
+</RelativeLayout>
