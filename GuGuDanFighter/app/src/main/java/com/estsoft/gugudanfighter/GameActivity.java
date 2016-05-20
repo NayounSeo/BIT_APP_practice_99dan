@@ -19,6 +19,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int gameTotal;
     private int gameCorrect;
     private int gameWrong;
+    private int hereIsTheResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,73 +35,59 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             buttons[i] = (Button) findViewById(buttonIds[i]);
             buttons[i].setOnClickListener(this);
         }
+
+        hereIsTheResult = newQuiz();
     }
 
     @Override
     public void onClick(View v) {
-        newQuiz();
+        int viewId = v.getId();
+        if (viewId == buttons[hereIsTheResult].getId()) {
+            gameCorrect++;
+        } else {
+            gameWrong++;
+        }
+        gameTotal++;
 
+        hereIsTheResult = newQuiz();
     }
-
-    /*OnClick의 내용이 되어줄 메소드.
-    * ☆클릭할때마다☆ 실행
-    * ===================================
-    * 홀.... if(버튼 개수만큼) 안 넣어주면 버튼이 안변하네?!;; 왜지!*/
-   /* private void newQuiz() {
-        /* TODO
-        * A  )
-        * 뭔가 이렇게 하면 별로일까!
-        * 답은 랜덤한 버튼 아이디에 넣어주고
-        * == null 버튼들에 대해 랜덤 값 생성.
-        * 이래도 중복 검사는 해야겠지만...
-        * B  )
-        * 모든 버튼에 대해서 랜덤 값 생성 후
-        * 버튼 하나 골라서 답을 넣어주는 건?
-        * 중복검사 해야겠지만 ㅜㅠㅜ
-        * 이따가 생각해보자!*/
-/*                  A
+    //새로 짜는 newQuiz().........
+    private int newQuiz() {
         int[] randomAnswers = new int[numOfButtons];
-        int hereIsTheResult = randomize(1, 9);
-
-        System.out.println();
-        System.out.println("here is the result : "+hereIsTheResult );
-
+        //문제 내기
         final int leftOprnd = randomize(1, 9);
         final int rightOprnd = randomize(1, 9);
         final int result = leftOprnd * rightOprnd;
-
-        System.out.println("result : "+result);
-        System.out.println();
 
         TextView leftView = (TextView) findViewById(R.id.leftOprnd);
         leftView.setText(""+leftOprnd);
         TextView rightView = (TextView) findViewById(R.id.rightOprnd);
         rightView.setText(""+rightOprnd);
 
+        //버튼 조정
         for(int i=0; i<numOfButtons; i++) {
-           if(i != hereIsTheResult) {
-               randomAnswers[hereIsTheResult] = result;
-               buttons[hereIsTheResult].setText("" + randomAnswers[hereIsTheResult]);
-           } else {
-               randomAnswers[i] = randomize(1, 9)*randomize(1, 9);
-               //TODO
-               //사실 여기서 중복까지 검사해서 넣어주는 것이 좋겠어.
-               //그런 메소드를 하나 구현합시다!//
-               Boolean isAlreadyExist = intArrayContains(randomAnswers, randomAnswers[i]);
-               if (isAlreadyExist) {
-                    //이거 아닌 것 같아...
-                    // randomAnswers에 넣어줄 값들의 중복검사가 선행되어야만 하겠어ㅋㅋㅋㅋ
-                   randomAnswers[i] = randomize(1, 9)*randomize(1, 9);
-               }
-               buttons[i].setText(""+randomAnswers[i]);
+            int random1 = randomize(1, 9);
+            int random2 = randomize(1, 9);
+            int temprandom = random1*random2;
+            Boolean isAlready = whatArrayContains(randomAnswers, temprandom, result);
+            if(isAlready) {
+                continue;
             }
+            randomAnswers[i] = temprandom;
+            buttons[i].setText(""+randomAnswers[i]);
         }
-        printScore();
-    }*/
+        hereIsTheResult = randomize(0, 8);
+        randomAnswers[hereIsTheResult] = result;
+        buttons[hereIsTheResult].setText(""+randomAnswers[hereIsTheResult]);
 
-    private boolean intArrayContains( int[] array, int val ) {
+        printScore();
+
+        return hereIsTheResult;
+    }
+
+    private boolean whatArrayContains( int[] array, int val1, int val2 ) {
         for( final int i : array ) {
-            if( i == val ) {
+            if( i == val1 || i == val2) {
                 return true;
             }
         }
